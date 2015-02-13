@@ -1,0 +1,21 @@
+Riak Precise64 Puppet module
+============================
+
+Install current Riak 1.4.8 on a Ubuntu precise 64Bit (12.04 LTS). This can be used for vagrant to get up and running with Riak quickly.
+
+Configuration
+-------------
+Riak is configured acording to ```app.config``` with enabled leveldb support for
+secondary indcies, and is bound to all network interfaces ```0.0.0.0``` so it
+can be use inside a Vagrant box to interface with the outside world via port
+forwarding
+
+Why?
+----
+There are already is a [puppet module supported by
+basho](https://github.com/basho/puppet-riak), so for production use don't take
+this one here, it is intended to get up and running quickly inside a vagrant
+environment.
+
+License MIT
+
