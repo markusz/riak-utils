@@ -1,13 +1,12 @@
 'use strict';
 
 var expect = require('expect.js');
-var config = require('../../../../config/riak')[process.env.NODE_ENV];
-var db = require('riak-js').getClient(config.connection);
+var config = {};
+var db = require('riak-js').getClient(config);
 var async = require('async');
 var chai = require('chai');
 var assert = chai.assert;
-var transfer = require('../../../../tools/utility_scripts/multi_client_capability/transfer_entries_from_non_appId_buckets');
-var helpers = require('../../../helper');
+var transfer = require('../lib/logic/bucket-transfer');
 
 //A dummy logger to avoid breaking jenkins due to console.log
 var dummyLogger = function() {
