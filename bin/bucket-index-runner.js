@@ -1,5 +1,5 @@
 'use strict';
-var RebuildIndexesLogic = require('./logic/bucket-index');
+var RebuildIndexesLogic = require('./../lib/bucket-index');
 
 /*
 

@@ -1,18 +1,35 @@
 {
-  "name": "riak-active-record",
+  "name": "riak-utils",
   "version": "0.0.1",
   "private": true,
   "author": "Markus Zilller <mail.markus.ziller@gmail.com>",
+  "description": "A collection of utilities for Riak",
   "contributors": [
     "Markus Zilller <mail.markus.ziller@gmail.com>"
   ],
+  "keywords": [
+    "riak",
+    "utils",
+    "transfer",
+    "cleanup",
+    "bucket"
+  ],
+  "bin": {
+    "riak-bucket-cleanup": "./bin/bucket-cleanup-runner.js",
+    "riak-bucket-compare": "./bin/bucket-compare-runner.js",
+    "riak-bucket-index-build": "./bin/bucket-index-build-runner.js",
+    "riak-bucket-statistics": "./bin/bucket-statistics-runner.js",
+    "riak-bucket-transfer": "./bin/bucket-transfer-runner.js"
+  },
   "dependencies": {
     "async": "^0.9.0",
     "deep-equal": "0.2.1",
     "node-uuid": "1.4.2",
+    "preconditions": "1.0.8",
     "lodash": "^2.4.1",
     "log4js": "0.6.x",
     "riak-js": "0.10.2",
+    "commander": "^2.3.0",
     "underscore": "~1.5.1"
   },
   "devDependencies": {
@@ -32,7 +49,7 @@
     "should": "*",
     "sinon": "^1.10.3"
   },
-  "repository": "git@github.com:markusz/riak-active-record.git",
+  "repository": "git@github.com:markusz/riak-utils.git",
   "engines": {
     "node": "0.10.x",
     "npm": "1.4.x"

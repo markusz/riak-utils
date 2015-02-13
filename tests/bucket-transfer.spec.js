@@ -6,7 +6,7 @@ var db = require('riak-js').getClient(config);
 var async = require('async');
 var chai = require('chai');
 var assert = chai.assert;
-var transfer = require('../lib/logic/bucket-transfer');
+var transfer = require('../lib/bucket-transfer');
 
 //A dummy logger to avoid breaking jenkins due to console.log
 var dummyLogger = function() {
