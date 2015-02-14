@@ -1,4 +1,4 @@
-var RebuildIndexesLogic = require('../lib/bucket-index');
+var RebuildIndexesLogic = require('../lib/bucket-index/bucket-index');
 
 var expect = require('expect.js');
 var chai = require('chai');

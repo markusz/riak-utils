@@ -8,7 +8,7 @@
  *  while still being able to run the script using node (i.e. for batch jobs)
  */
 
-var transfer = require('./../lib/bucket-transfer');
+var transfer = require('./../lib/bucket-transfer/bucket-transfer');
 var _ = require('lodash');
 var separator = '_';
 var defaultBuckets = [

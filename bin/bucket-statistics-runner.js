@@ -2,7 +2,7 @@
 
 var packageJson = require('../package.json');
 var BucketStatistics = require('../lib/bucket-statistics/bucket-statistics');
-var AvailableStatistics = require('../lib/bucket-statistics/statistics');
+var AvailableStatistics = require('../lib/bucket-statistics/metrics');
 var RiakJS = require('riak-js');
 
 //Sample usage
