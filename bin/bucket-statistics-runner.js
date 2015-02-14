@@ -34,8 +34,8 @@ var settings = {
   port: program.port
 };
 
-var riakClient = RiakJS.getClient({host: settings.host, port: settings.port});
+var riakClient = require('riak-js')({ host: settings.host, port: settings.port });
 
-BucketStatistics.calculateStatistics('7TV_playlists', riakClient, Object.keys(AvailableStatistics), function(results){
+BucketStatistics.calculateStatistics('7TV_playlists', riakClient, Object.keys(AvailableStatistics), function(results) {
   console.log('DONE with results:', results);
 });
