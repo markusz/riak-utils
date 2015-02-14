@@ -3,8 +3,8 @@ var RiakJS = require('riak-js');
 var RiakPopulator = require('../lib/bucket-populator/riak_populator');
 
 var expect = require('expect.js');
-//var chai = require('chai');
-//var assert = chai.assert;
+var chai = require('chai');
+var assert = chai.assert;
 
 var BucketStatistics = require('../lib/bucket-statistics/bucket-statistics');
 describe.only('BucketStatistics', function() {
@@ -41,10 +41,28 @@ describe.only('BucketStatistics', function() {
     riakServer.stop(done);
   });
 
-  it('receive no results for a non existing bucket', function(done) {
-    BucketStatistics.calculateStatistics(bucketName, riakClient, null, function(result) {
-      expect(result.count.elements).to.be(100);
+  it('should receive no results for a non existing bucket', function(done) {
+    BucketStatistics.calculateStatistics('empty_bucket', riakClient, null, function(result) {
+      assert.deepEqual(result, {});
       done();
+    });
+  });
+
+  it('should respond with an error message to an unknown metric', function(done) {
+    BucketStatistics.calculateStatistics(bucketName, riakClient, ['no_metric'], function(result) {
+      assert.instanceOf(result.no_metric, Error);
+      done();
+    });
+  });
+
+  describe('metric', function() {
+    describe('count', function() {
+      it('should correctly count the number of elements', function(done) {
+        BucketStatistics.calculateStatistics(bucketName, riakClient, ['count'], function(result) {
+          expect(result.count.elements).to.be(100);
+          done();
+        });
+      });
     });
   });
 });
