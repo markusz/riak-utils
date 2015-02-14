@@ -28,7 +28,7 @@
     "preconditions": "1.0.8",
     "lodash": "^2.4.1",
     "log4js": "0.6.x",
-    "riak-js": "0.10.2",
+    "riak-js": "^1.0.3",
     "commander": "^2.3.0",
     "underscore": "~1.5.1"
   },
