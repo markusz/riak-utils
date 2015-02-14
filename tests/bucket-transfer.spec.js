@@ -2,11 +2,10 @@
 
 var expect = require('expect.js');
 var config = {};
-var db = require('riak-js').getClient(config);
 var async = require('async');
 var chai = require('chai');
 var assert = chai.assert;
-var transfer = require('../lib/bucket-transfer/bucket-transfer');
+//var transfer = require('../lib/bucket-transfer/bucket-transfer');
 
 //A dummy logger to avoid breaking jenkins due to console.log
 var dummyLogger = function() {
