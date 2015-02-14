@@ -15,7 +15,6 @@
   "disallowMultipleLineBreaks": true,
   "disallowKeywordsOnNewLine": [ "else" ],
   "disallowSpaceAfterObjectKeys": true,
-  "validateLineBreaks": "LF",
   "disallowMultipleVarDecl": true,
   "disallowTrailingWhitespace": true,
   "disallowTrailingComma": true
