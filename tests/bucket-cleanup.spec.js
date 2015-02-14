@@ -6,6 +6,9 @@ var expect = require('expect.js');
 var chai = require('chai');
 var assert = chai.assert;
 
+var BucketCleanup = require('../lib/bucket-cleanup/bucket-cleanup');
+var BucketStatistics = require('../lib/bucket-statistics/bucket-statistics');
+
 describe('BucketCleanup', function() {
   var bucketName = 'test_bucket';
   var port = 9999;
@@ -38,5 +41,17 @@ describe('BucketCleanup', function() {
 
   after(function(done) {
     riakServer.stop(done);
+  });
+
+  it('should clean up a bucket', function(done) {
+    BucketStatistics.calculateStatistics(bucketName, riakClient, ['count'], function(result) {
+      expect(result.count.elements).to.be(100);
+      BucketCleanup.cleanBucket(bucketName, riakClient, function(res) {
+        BucketStatistics.calculateStatistics(bucketName, riakClient, ['count'], function(result) {
+          assert.deepEqual(result, {});
+          done();
+        });
+      });
+    });
   });
 });
