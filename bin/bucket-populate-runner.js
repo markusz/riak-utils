@@ -1,6 +1,6 @@
 'use strict';
 
-var RiakPopulator = require('./../../lib/bucket-populator/riak_populator');
+var RiakPopulator = require('./../lib/bucket-populate/bucket-populate');
 var ENTRIES_TO_CREATE = {
   'xx': 20
 };
