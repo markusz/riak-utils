@@ -1,6 +1,6 @@
 var RiakMockServer = require('riak-mock-server');
 var RiakJS = require('riak-js');
-var RiakPopulator = require('../lib/bucket-populator/riak_populator');
+var RiakPopulator = require('../lib/bucket-populate/bucket-populate');
 
 var expect = require('expect.js');
 var chai = require('chai');
