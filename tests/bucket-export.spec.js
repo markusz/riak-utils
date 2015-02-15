@@ -9,7 +9,7 @@ var assert = chai.assert;
 var fs = require('fs');
 
 var BucketExport = require('../lib/bucket-export/bucket-export');
-describe('BucketExport', function() {
+describe('Bucket Export', function() {
   var bucketName = 'test_bucket';
   var port = 9999;
   var riakConfig = { host: 'localhost', port: port };

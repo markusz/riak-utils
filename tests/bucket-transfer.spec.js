@@ -1,15 +1,67 @@
 'use strict';
 
+var RiakMockServer = require('riak-mock-server');
+var RiakJS = require('riak-js');
+var RiakPopulator = require('../lib/bucket-populate/bucket-populate');
+var _ = require('lodash');
+var BucketTransfer = require('../lib/bucket-transfer/bucket-transfer');
+var BucketStatistics = require('../lib/bucket-statistics/bucket-statistics');
+
 var expect = require('expect.js');
-var config = {};
-var async = require('async');
 var chai = require('chai');
 var assert = chai.assert;
-//var transfer = require('../lib/bucket-transfer/bucket-transfer');
 
-//A dummy logger to avoid breaking jenkins due to console.log
-var dummyLogger = function() {
-};
+describe('Bucket Transfer', function() {
+  var bucketName = 'test_bucket';
+  var port = 9999;
+  var riakConfig = { host: 'localhost', port: port };
+  var riakClient = RiakJS(riakConfig);
+
+  var populatorConfig = {};
+  populatorConfig[bucketName] = {
+    createNewInstance: function(id) {
+      return {
+        getBody: function() {
+          return { my_numeric_value: id, my_string_value: 'number_' + id };
+        },
+        getIndexes: function() {
+          return { intidx: id, stringidx: 'number_' + id };
+        }
+      };
+    },
+    count: 100
+  };
+
+  var riakServer = new RiakMockServer({ port: port });
+  var riakPopulator = new RiakPopulator(riakConfig, populatorConfig);
+
+  before(function(done) {
+    riakServer.start(function(port) {
+      riakPopulator.start(function() {
+        expect(port).to.be.ok();
+        done();
+      });
+    });
+  });
+
+  after(function(done) {
+    riakServer.stop(done);
+  });
+
+  var settings = {
+    from: bucketName,
+    to: bucketName + '_new'
+  };
+
+  it.only('should transfer the entries', function(done) {
+    BucketTransfer.transfer(settings, riakClient, function(filePath) {
+      BucketStatistics.calculateStatistics(settings.to, riakClient, ['count'], function(result) {
+        expect(result.count.elements).to.be(100);
+        done();
+      });
+    });
+  });
+});
 
 //describe('TransferScript for buckets', function() {
 //  before(function(done) {
