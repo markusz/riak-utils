@@ -7,7 +7,7 @@ var chai = require('chai');
 var assert = chai.assert;
 
 var BucketStatistics = require('../lib/bucket-statistics/bucket-statistics');
-describe.only('BucketStatistics', function() {
+describe('BucketStatistics', function() {
   var bucketName = 'test_bucket';
   var port = 9999;
   var riakConfig = { host: 'localhost', port: port };
